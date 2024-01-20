@@ -17,10 +17,8 @@ export const getQuestions = async (voted: number[], range: number) => {
       }else{
         const { data: questionsResultAll } = await supabase.from('questions').select().range(0,9);
         if(questionsResultAll){
-          console.log("emtra2");
           return {questionsResultAll, allVisited: true};
         }else{
-          console.log("emtra4");
           return {questionsResult: undefined, allVisited:true}
         }
       }
@@ -47,14 +45,15 @@ export const getVotes = async ( id:number ) => {
 export const postVote = async ( id:number, index: number, votes:number[], currentVotes: number ) => {
     try {
       const fieldName = `${index + 1}`;
-      const updateObject = { [fieldName]: votes[index] + 1, totalVotes: currentVotes +1};
-      const { data: votesResult } = await supabase
-      .from('votes')
-      .update(updateObject)
-      .eq('id', id);
-  
-      if (votesResult) {
-        console.log("Vote posted!!");
+      if(typeof votes[index] === 'number' && typeof currentVotes === 'number'){
+        const updateObject = { [fieldName]: votes[index] + 1, totalVotes: currentVotes +1};
+        const { data: votesResult } = await supabase
+        .from('votes')
+        .update(updateObject)
+        .eq('id', id);
+        if (votesResult) {
+          console.log("Vote posted!!");
+        }
       }
     } catch (error) {
       console.error("Error fetching questions:", error);
