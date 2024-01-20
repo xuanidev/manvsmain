@@ -34,9 +34,9 @@ export default function Home() {
         {/*<div className={`bg-granite`} style={{backgroundImage: `url(${granite.src})`}}></div>*/}
       </div>
       <div className="loader" style={{display: loading ? 'block' : 'none'}}></div>
-      <div className='information' >
+      {/*<div className='information' >
         <span className='question-mark__main'>?</span>
-      </div>
+  </div>*/}
     </main>
   </>
   )
