@@ -1,6 +1,7 @@
 'use client' 
 import { useState} from 'react'
 import Quiz from '@/components/quiz'
+//import Modal from '@/components/modal'
 import bg from '../../public/bg-v.png'
 import left from '../../public/leftbg2.png'
 import rigth from '../../public/rigthbg2.png'
@@ -12,17 +13,10 @@ const myFont = localFont({ src: '../../public/fonts/ZTRavigsfen-Regular.otf' })
 export default function Home() {
   const [selected, setSelected] = useState(false);
   const [loading, setLoading] = useState(true);
+  //const [showModal, setShowModal] = useState(false);
 
   const handleChildSelect = (value: boolean) => {
     setSelected(value);
-  };
-  const scrollToBottom = () => {
-    setTimeout(() => {
-      const element = document.getElementById('bottom');
-      if (element) {
-        element.scrollTop = element.scrollHeight;
-      }
-    }, 600);
   };
 
   return (
@@ -40,6 +34,9 @@ export default function Home() {
         {/*<div className={`bg-granite`} style={{backgroundImage: `url(${granite.src})`}}></div>*/}
       </div>
       <div className="loader" style={{display: loading ? 'block' : 'none'}}></div>
+      <div className='information' >
+        <span className='question-mark__main'>?</span>
+      </div>
     </main>
   </>
   )

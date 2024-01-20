@@ -1,0 +1,27 @@
+.modalContainer{
+    position: absolute;
+    z-index: 40;
+    background-color: #09031d;
+    border: 2px solid #f4b66f;
+    transition: all 0.4s ease-in-out;
+    border-radius: 12px;
+    padding: 12px;
+    box-sizing: border-box;
+}
+.modalContainerActive{
+    height: 60svh;
+    width: 60svw;
+    top: 10svw;
+    left: 20svw;
+opacity: 1;
+}
+.modalContainerInactive{
+    height: 0svh;
+    width: 0svw;
+    top: 12px;
+    left: calc(100% - 47px);
+    margin-top: 12px;
+    margin-right: 12px;
+    opacity: 0;
+    z-index: 0;
+}

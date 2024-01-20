@@ -143,12 +143,13 @@ const Quiz: React.FC<QuizProps> = ({ onSelect, loading, setLoading }) => {
       if(currentVotes === 0){
         let totalVotes = [0, 0, 0, 0, 0];
         totalVotes[index] = 1;
-        setVotes(totalVotes);
+        setPercentage(totalVotes);
+        setVotes(totalVotes.map((result:number) => (Math.round((result / ( currentVotes + 1)) * 10000)/100)));
       }else{
-        let votesAux = votes;
-        votesAux[index] = votesAux[index] + 1;
-        setPercentage(votesAux);
-        setVotes(votesAux.map((result:number) => (Math.round((result / currentVotes) * 10000)/100)));
+        let totalVotes = votes;
+        totalVotes[index] = totalVotes[index] + 1;
+        setPercentage(totalVotes);
+        setVotes(totalVotes.map((result:number) => (Math.round((result / (currentVotes +1)) * 10000)/100)));
       }
       scrollToBottom();
     }
@@ -215,7 +216,7 @@ const Quiz: React.FC<QuizProps> = ({ onSelect, loading, setLoading }) => {
                         </li>
                       ))}
                     </ul>
-                    <ul className='results-box' >
+                    <ul className='results-box'  style={{height: '100px'}} >
                       {votes.map((answer, index) => (
                         <li
                           key={index}

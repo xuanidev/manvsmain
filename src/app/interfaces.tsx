@@ -3,6 +3,9 @@ export type QuizProps = {
   loading: boolean,
   setLoading: (value: boolean) => void;
 };
+export type ModalProps = {
+  show: boolean,
+};
 
 export type QuizQuestion = {
   id: number;
