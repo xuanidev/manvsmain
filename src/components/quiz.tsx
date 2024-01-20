@@ -233,7 +233,7 @@ const Quiz: React.FC<QuizProps> = ({ onSelect, loading, setLoading }) => {
                 {votes.map((vote, index) => (
                   <div className='totalQuiz' key={index}>
                     <div className='resultQuiz__percentage'>{`${!isNaN(vote) ? Math.ceil(vote) : 0}`}<span className='resultQuiz__decimal'>{`.${(vote.toString().split('.')[1] || '').slice(0, 2)}%`}</span></div>
-                    <div className='resultQuiz__votes'>{`Votes: ${percentage[index]}/${currentVotes + 1}`}</div>
+                    <div className='resultQuiz__votes'>{`${percentage[index] ? percentage[index] : 0} / ${currentVotes + 1}`}</div>
                   </div>
                 ))}
               </ul>
