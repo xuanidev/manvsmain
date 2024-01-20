@@ -45,7 +45,7 @@ export const getVotes = async ( id:number ) => {
 export const postVote = async ( id:number, index: number, votes:number[], currentVotes: number ) => {
     try {
       const fieldName = `${index + 1}`;
-      /*if(typeof votes[index] === 'number' && typeof currentVotes === 'number'){
+      if(typeof votes[index] === 'number' && typeof currentVotes === 'number'){
         const updateObject = { [fieldName]: votes[index] + 1, totalVotes: currentVotes +1};
         const { data: votesResult } = await supabase
         .from('votes')
@@ -54,7 +54,7 @@ export const postVote = async ( id:number, index: number, votes:number[], curren
         if (votesResult) {
           console.log("Vote posted!!");
         }
-      }*/
+      }
     } catch (error) {
       console.error("Error fetching questions:", error);
     }
