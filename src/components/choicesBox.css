@@ -1,0 +1,117 @@
+.choices-box{
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    padding-inline-start:0px;
+    margin: 0px;
+    height: 100%;
+    margin-top: 16px;
+}
+.choice-option{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    color: #f4b66f;
+    box-shadow: 0px 1px px 1px rgb(182, 170, 96);
+    position: relative;
+}
+.btnAnswer {
+    text-decoration: none;
+    list-style: none;
+    border: 2px solid #f4b66f;
+    border-radius: 6px;
+    margin-left: 0px;
+    margin-right: 0px;
+    height: 150px;
+    display: grid;
+    place-content: center;
+    transition: all 0.2s ease-in-out;
+}
+.btnAnswer:not(.notActive):hover {
+    transform: scale(1.02);
+    box-shadow: 0px 1px 3px 1px rgba(138, 129, 72, 0.8);
+    border: 2px solid #f4b66f;
+}
+.btnAnswer.selected {
+    height: 0px;
+    box-shadow: none;
+    border: none;
+}
+.btnAnswer.selected:hover {
+    height: 0px;
+    transform: scale(1);
+    box-shadow: none;
+    border: none;
+}
+.btnAnswer:not(.notActive):hover .notActive {
+    transform: scale(1.0);
+    border: 2px solid white;
+}
+.btnAnswer .again:hover{
+    box-shadow: none;
+}
+.notActive{
+    border: 2px solid #f4b66f73;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.btnQuizNotActive{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    font-size: 24px;
+    color: #c7b768da;
+    transition: all 0.2s ease-in-out;
+    text-transform: uppercase;
+    padding-block: 0px;
+    padding-inline: 0px;
+}
+.btnQuiz{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    font-size: 38px;
+    color: #f8e483;
+    transition: all 0.2s ease-in-out;
+    text-transform: uppercase;
+    padding-block: 0px;
+    padding-inline: 0px;
+    padding: 2px;
+}
+  
+.btnQuiz:hover{
+    cursor: pointer;
+}
+.cursor-default:hover{
+    cursor: default;
+}
+.fontSelected{
+    font-size: 34px;
+    z-index: 0;
+}
+
+@media only screen and (max-width: 768px) {
+    .btnQuiz{
+      font-size: 32px;
+    }
+    .btnAnswer{
+        height: 150px;
+    }
+}
+
+@media only screen and (max-width: 812px) {
+    .choices-box{
+        display: flex;
+        flex-direction: row;
+        gap:16px;
+    }
+    .btnAnswer {
+        width: 100%;
+      }
+}

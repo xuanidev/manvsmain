@@ -1,12 +1,37 @@
 export type QuizProps = {
-  onSelect: (value: boolean) => void;
-  loading: boolean,
+  loading: boolean;
   setLoading: (value: boolean) => void;
+  language: string;
 };
 export type ModalProps = {
-  show: boolean,
+  show: boolean;
+  setShowModal: (value: boolean) => void;
 };
-
+export type BtnAgainProps = {
+  loading: boolean;
+  selected: boolean;
+  nextQuestion: (value: void) => void;
+  language: string;
+};
+export type ImagesBoxProps = {
+  src: string;
+};
+export type ChoicesBoxProps = {
+  loading: boolean;
+  selected: boolean;
+  onAnswerSelected: (value: number) => void;
+  language: string;
+};
+export type ResultsBoxProps = {
+  selected: boolean;
+  votes: number[];
+  percentage: number[];
+  currentVotes: number;
+};
+export type LanguageIcon = {
+  language: string;
+  setLanguage: (value: string) => void;
+};
 export type QuizQuestion = {
   id: number;
   question__es: string;
@@ -14,16 +39,13 @@ export type QuizQuestion = {
   choices__es: string;
   choices__en: string;
   img: string;
-  votes: number[]; 
+  votes: number[];
 };
 export type QuizVotes = {
   id: number;
-  1: number;
-  2: number;
-  3: number;
-  4: number;
-  5: number;
-  totalVotes: number; 
+  yes: number;
+  no: number;
+  totalVotes: number;
 };
 
 export type QuizQuestionString = {
@@ -42,16 +64,18 @@ export type QuizQuestionStringArray = {
 
 export const serializeQuestions = (questionsResult: any): QuizQuestion[] => {
   if (questionsResult) {
-    const formattedQuestions: QuizQuestion[] = questionsResult.map((question: any) => {
-      return {
-        id: question.id,
-        question__es: question.question__es,
-        question__en: question.question__en,
-        choices__es: question.choices__es,
-        choices__en: question.choices__en,
-        img: question.img
-      };
-    });
+    const formattedQuestions: QuizQuestion[] = questionsResult.map(
+      (question: any) => {
+        return {
+          id: question.id,
+          question__es: question.question__es,
+          question__en: question.question__en,
+          choices__es: question.choices__es,
+          choices__en: question.choices__en,
+          img: question.img,
+        };
+      }
+    );
 
     return formattedQuestions;
   }
@@ -64,11 +88,8 @@ export const serializeVotes = (votesResult: any): QuizVotes[] => {
     const formattedVotes: QuizVotes[] = votesResult.map((votes: any) => {
       return {
         id: votes.id,
-        1: votes['1'],
-        2: votes['2'],
-        3: votes['3'],
-        4: votes['4'],
-        5: votes['5'],
+        yes: votes.yes,
+        no: votes.no,
         totalVotes: votes.totalVotes,
       };
     });
