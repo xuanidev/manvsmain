@@ -21,7 +21,6 @@ const LanguageSelector: React.FC<LanguageIcon> = ({
   };
 
   const handleIconClick = () => {
-    console.log(language);
     switch (language) {
       case "en":
         setLanguage("es");

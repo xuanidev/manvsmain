@@ -60,16 +60,13 @@ const Quiz: React.FC<QuizProps> = ({ loading, setLoading, language }) => {
 
   const generateRandomQuestionId = async (voted: number[]) => {
     const availableQuestions = questions.map((question) => question.id);
-    console.log(availableQuestions);
     const remainingQuestions = availableQuestions.filter(
       (questionId) => !voted.includes(questionId)
     );
-    console.log(remainingQuestions);
     let questionsGet: QuizQuestion[] = [];
     let votesGet: QuizVotes[] = [];
     let indexOfSelectedQuestion = 0;
     if (remainingQuestions.length === 0) {
-      console.log(currentAnswer);
       try {
         setLoading(true);
         let { questionsResult, allVisited } = await getQuestions(voted);
@@ -83,7 +80,6 @@ const Quiz: React.FC<QuizProps> = ({ loading, setLoading, language }) => {
         questionsGet = serializeQuestions(questionsResult);
         let ranIndex = Math.floor(Math.random() * questionsGet.length);
         let id = questionsGet[ranIndex].id;
-        console.log(id);
         let newValueCurrentAnswer = currentAnswer;
         if (id && id !== 1) {
           newValueCurrentAnswer = id;
@@ -93,7 +89,6 @@ const Quiz: React.FC<QuizProps> = ({ loading, setLoading, language }) => {
           (question) => question.id === id
         );
         const votesResult = await getVotes(newValueCurrentAnswer);
-        console.log(votesResult);
         if (questionsResult && votesResult) {
           createVotes(votesResult);
         }
@@ -151,7 +146,6 @@ const Quiz: React.FC<QuizProps> = ({ loading, setLoading, language }) => {
     setPercentage([0, 0]);
     setVotes([0, 0]);
     let { randomNumber, result } = await generateRandomQuestionId(voted);
-    console.log(randomNumber);
     if (result != questions) {
       setQuestions(result);
     }
@@ -171,11 +165,9 @@ const Quiz: React.FC<QuizProps> = ({ loading, setLoading, language }) => {
       setSelectedAnswerIndex(index);
       if (!voted.includes(questions[currentAnswer].id)) {
         const newVoted = [...voted, questions[currentAnswer].id];
-        console.log(newVoted);
         setVoted(newVoted);
         localStorage.setItem("voted", JSON.stringify(newVoted));
       }
-      console.log(votes);
       await postVote(questions[currentAnswer].id, index, votes, currentVotes);
       if (currentVotes === 0) {
         let totalVotes = [0, 0];

@@ -20,8 +20,7 @@ export const getQuestions = async (voted: number[]) => {
       .select()
       .not("id", "in", votedString)
       .range(0, 9);
-    console.log(voted);
-    console.log(questionsResult);
+
     if (questionsResult && questionsResult.length > 0) {
       return { questionsResult, allVisited: false };
     } else {
@@ -48,7 +47,6 @@ export const getVotes = async (id: number) => {
       .select()
       .eq("id", id);
     if (votesResult) {
-      console.log(id);
       return votesResult;
     }
   } catch (error) {
@@ -64,22 +62,16 @@ export const postVote = async (
   currentVotes: number
 ) => {
   try {
-    console.log("id " + id + "index " + index + "currentVotes " + currentVotes);
-    console.log(votes);
     const fieldName = `${index === 0 ? "yes" : "no"}`;
     if (typeof votes[index] === "number" && typeof currentVotes === "number") {
       const updateObject = {
         [fieldName]: votes[index] + 1,
         totalVotes: currentVotes + 1,
       };
-      console.log(updateObject);
       const { data: votesResult } = await supabase
         .from("votesYesOrNo")
         .update(updateObject)
         .eq("id", id);
-      if (votesResult) {
-        console.log("Vote posted!!");
-      }
     }
   } catch (error) {
     console.error("Error fetching questions:", error);
