@@ -55,7 +55,7 @@ const Quiz: React.FC<QuizProps> = ({ loading, setLoading, language }) => {
       let votes = [totalVotes[0].yes, totalVotes[0].no];
       setVotes(votes);
     };
-    setTimeout(delayedVotesUpdate, 600);
+    setTimeout(delayedVotesUpdate, 1200);
   };
 
   const generateRandomQuestionId = async (voted: number[]) => {
