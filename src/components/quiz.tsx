@@ -55,7 +55,7 @@ const Quiz: React.FC<QuizProps> = ({ loading, setLoading, language }) => {
       let votes = [totalVotes[0].yes, totalVotes[0].no];
       setVotes(votes);
     };
-    setTimeout(delayedVotesUpdate, 1200);
+    setTimeout(delayedVotesUpdate, 600);
   };
 
   const generateRandomQuestionId = async (voted: number[]) => {
@@ -239,7 +239,7 @@ const Quiz: React.FC<QuizProps> = ({ loading, setLoading, language }) => {
         nextQuestion={nextQuestion}
         language={language}
       />
-      <div style={{ bottom: 0 }}></div>
+      <div id="bottom" style={{ bottom: 0 }}></div>
     </div>
   );
 };
