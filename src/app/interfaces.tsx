@@ -2,6 +2,7 @@ export type QuizProps = {
   loading: boolean;
   setLoading: (value: boolean) => void;
   language: string;
+  scrollToBottom: (value: void) => void;
 };
 export type ModalProps = {
   show: boolean;

@@ -25,16 +25,12 @@ import ResultsBox from "./resultsBox";
 
 const myFont = localFont({ src: "../../public/fonts/ZTRavigsfen-Regular.otf" });
 
-const scrollToBottom = () => {
-  setTimeout(() => {
-    const element = document.getElementById("bottom");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "end" });
-    }
-  }, 600);
-};
-
-const Quiz: React.FC<QuizProps> = ({ loading, setLoading, language }) => {
+const Quiz: React.FC<QuizProps> = ({
+  loading,
+  setLoading,
+  language,
+  scrollToBottom,
+}) => {
   const [selected, setSelected] = useState(false);
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(0);
   const [currentAnswer, setCurrentAnswer] = useState(1);
@@ -239,7 +235,6 @@ const Quiz: React.FC<QuizProps> = ({ loading, setLoading, language }) => {
         nextQuestion={nextQuestion}
         language={language}
       />
-      <div id="bottom" style={{ bottom: 0 }}></div>
     </div>
   );
 };

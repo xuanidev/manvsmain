@@ -9,6 +9,15 @@ import rigth from "../../public/rigthbg2.png";
 import granite from "../../public/subtle-grunge.png";
 import Modal from "@/components/modal";
 
+const scrollToBottom = () => {
+  setTimeout(() => {
+    const element = document.getElementById("bottom");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "end" });
+    }
+  }, 600);
+};
+
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [languange, setLanguange] = useState("es");
@@ -44,6 +53,7 @@ export default function Home() {
             loading={loading}
             setLoading={setLoading}
             language={languange}
+            scrollToBottom={scrollToBottom}
           />
           <div id="bottom" style={{ bottom: 0 }}></div>
         </div>
@@ -56,6 +66,7 @@ export default function Home() {
         </div>
         <Modal show={showModal} setShowModal={setShowModal} />
         <LanguageSelector language={languange} setLanguage={setLanguange} />
+        <div id="bottom" style={{ bottom: 0 }}></div>
       </main>
     </>
   );
